@@ -1,21 +1,16 @@
 file = open("matriz.txt", "r")
 
 def permutacoes_chaves(lista_chaves):
-    pilha = [([], lista_chaves)]
+    if len(lista_chaves) == 0:
+        return [[]]
+    
     resultado = []
-
-    while pilha:
-        caminho_atual, restantes = pilha.pop()
-
-        if not restantes:
-            resultado.append(caminho_atual)
-        else:
-            for i in range(len(restantes)):
-                nova_chave = restantes[i]
-                novo_caminho = caminho_atual + [nova_chave]
-                novo_restante = restantes[:i] + restantes[i+1:]
-                pilha.append((novo_caminho, novo_restante))
-
+    for i in range(len(lista_chaves)):
+        elemento = lista_chaves[i]
+        restantes = lista_chaves[:i] + lista_chaves[i+1:]
+        for perm in permutacoes_chaves(restantes):
+            resultado.append([elemento] + perm)
+    
     return resultado
 
 def pontos(file):
