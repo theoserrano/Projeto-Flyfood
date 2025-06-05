@@ -1,8 +1,7 @@
 file = open("matriz.txt", "r")
 
-def permutacoes_chaves(dicionario):
-    chaves = list(dicionario.keys())
-    pilha = [([], chaves)]
+def permutacoes_chaves(lista_chaves):
+    pilha = [([], lista_chaves)]
     resultado = []
 
     while pilha:
@@ -33,7 +32,14 @@ def pontos(file):
         else:
             raise ValueError("Número inconsistente de colunas na linha.")
     
-    return permutacoes_chaves(pares_ord)
+    pontos_intermediarios = [p for p in pares_ord.keys() if p != 'R']
+
+    caminhos_intermediarios = permutacoes_chaves(pontos_intermediarios)
+    
+    caminhos_completos = [['R'] + caminho + ['R'] for caminho in caminhos_intermediarios]
+
+    return caminhos_completos, pares_ord
+    
 
 print(pontos(file))
 
