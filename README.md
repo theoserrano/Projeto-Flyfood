@@ -23,8 +23,7 @@ O código:
 - A primeira linha contém dois números inteiros separados por espaço: número de linhas (L) e colunas (C).
 - As próximas L linhas contêm C valores separados por espaço, representando a matriz.
 - Exemplo:
-
-3 4
-R 0 1 0
-0 0 0 2
-3 0 0 0
+- 3 4
+- R 0 1 0
+- 0 0 0 2
+- 3 0 0 0
