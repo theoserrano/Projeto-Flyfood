@@ -35,19 +35,39 @@ def pontos(file):
         else:
             raise ValueError("Número inconsistente de colunas na linha.")
     
-    pontos_intermediarios = [p for p in pares_ord.keys() if p != 'R']
+    
+    return pares_ord
+
+def gerar_caminhos(pares_ord):
+    pontos_intermediarios = []
+    for p in pares_ord:
+        if p != 'R':
+            pontos_intermediarios.append(p)
 
     caminhos_intermediarios = permutacoes_chaves(pontos_intermediarios)
-    
-    caminhos_completos = [['R'] + caminho + ['R'] for caminho in caminhos_intermediarios]
 
-    return caminhos_completos, pares_ord
-    
+    caminhos_completos = []
+    for caminho in caminhos_intermediarios:
+        caminhos_completos.append(['R'] + caminho + ['R'])
 
-print(pontos(file))
+    return caminhos_completos
 
-# Exemplo:
-# res = permutacoes_n_digitos(4)
-# print(res)
-# print("Total:", len(res))  # Deve imprimir 24 (4!)
+def melhor_caminho(caminhos, coordenadas):
+    menor_distancia = 100000000000
+    melhor = None
 
+    for caminho in caminhos:
+        dist = distancia_total(caminho, coordenadas)
+        if dist < menor_distancia:
+            menor_distancia = dist
+            melhor = caminho
+
+    return melhor, menor_distancia
+
+
+pares_ord = pontos(file)
+caminhos = gerar_caminhos(pares_ord)
+melhor, dist = melhor_caminho(caminhos, pares_ord)
+
+print(f"Melhor caminho:: {melhor}")
+print(f"Distância total: {dist}")
