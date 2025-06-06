@@ -30,9 +30,17 @@ def permutacoes_chaves(lista_chaves):
     return resultado
 
 def gerar_caminhos(pares_ord):
-    pontos_intermediarios = [p for p in pares_ord if p != 'R']
+    pontos_intermediarios = []
+    for p in pares_ord:
+        if p != 'R':
+            pontos_intermediarios.append(p)
+
     caminhos_intermediarios = permutacoes_chaves(pontos_intermediarios)
-    caminhos_completos = [['R'] + caminho + ['R'] for caminho in caminhos_intermediarios]
+
+    caminhos_completos = []
+    for caminho in caminhos_intermediarios:
+        caminhos_completos.append(['R'] + caminho + ['R'])
+
     return caminhos_completos
     
 def distancia_total(caminho, coordenadas):
@@ -55,7 +63,7 @@ def melhor_caminho(caminhos, coordenadas):
 
     return melhor, menor_distancia
 
-# Resultado final
+
 pares_ord = pontos(file)
 caminhos = gerar_caminhos(pares_ord)
 melhor, dist = melhor_caminho(caminhos, pares_ord)
