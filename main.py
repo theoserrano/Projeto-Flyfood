@@ -13,6 +13,14 @@ def permutacoes_chaves(lista_chaves):
     
     return resultado
 
+def distancia_total(caminho, coordenadas):
+    total = 0
+    for i in range(len(caminho) - 1):
+        x1, y1 = coordenadas[caminho[i]]
+        x2, y2 = coordenadas[caminho[i + 1]]
+        total += abs(x1 - x2) + abs(y1 - y2)
+    return total
+
 def pontos(file):
     pares_ord = {}
     l, c = map(int, file.readline().split(" "))
