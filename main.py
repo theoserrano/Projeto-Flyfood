@@ -65,6 +65,10 @@ def melhor_caminho(caminhos, coordenadas):
 
 
 pares_ord = pontos(file)
+
+for k, v in pares_ord.items():
+    print(f"{k} -> {v}")
+print()
 caminhos = gerar_caminhos(pares_ord)
 melhor, dist = melhor_caminho(caminhos, pares_ord)
 
