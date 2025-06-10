@@ -12,7 +12,7 @@ def pontos(file):
                 if valor != '0':
                     pares_ord[valor] = (i, colun)
         else:
-            raise ValueError("Número inconsistente de colunas na linha.")
+            raise ValueError("Número inconsistente de colunas na linha da matriz.")
     
     return pares_ord
 
@@ -42,7 +42,7 @@ def gerar_caminhos(pares_ord):
         caminhos_completos.append(['R'] + caminho + ['R'])
 
     return caminhos_completos
-    
+
 def distancia_total(caminho, coordenadas):
     total = 0
     for i in range(len(caminho) - 1):
